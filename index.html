@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="相談支援事業所｜障害のある方やそのご家族の「どうしよう」に寄り添います。計画相談支援・地域移行支援など、あなたに合ったサポートを一緒に考えます。">
+  <meta property="og:title" content="相談支援事業所（仮）">
+  <meta property="og:description" content="障害のある方やご家族の「どうしよう」に、一緒に向き合います。">
+  <meta property="og:type" content="website">
+  <title>相談支援事業所（仮）｜あなたの「どうしよう」に寄り添います</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+    body {
+      font-family: 'Noto Sans JP', 'Yu Gothic', '游ゴシック', sans-serif;
+      color: #3d3d3d;
+      scroll-behavior: smooth;
+    }
+
+    /* カスタムカラー */
+    :root {
+      --main: #5aa688;
+      --main-light: #d4ede5;
+      --accent: #f5a55f;
+      --accent-light: #fde8d4;
+      --blue: #5b8fb9;
+      --blue-light: #daeaf5;
+      --bg: #f0f7f4;
+      --text: #3d3d3d;
+    }
+
+    /* 波形区切り */
+    .wave-top {
+      clip-path: ellipse(100% 55% at 50% 44%);
+    }
+    .wave-bottom {
+      clip-path: ellipse(100% 55% at 50% 56%);
+    }
+
+    /* ふわっとしたカード */
+    .card-soft {
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 20px rgba(90,166,136,0.12);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card-soft:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(90,166,136,0.2);
+    }
+
+    /* ボタン */
+    .btn-main {
+      background-color: #5aa688;
+      color: white;
+      border-radius: 9999px;
+      padding: 0.85rem 2.2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+    .btn-main:hover {
+      background-color: #489174;
+      transform: translateY(-2px);
+    }
+    .btn-accent {
+      background-color: #f5a55f;
+      color: white;
+      border-radius: 9999px;
+      padding: 0.85rem 2.2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+    .btn-accent:hover {
+      background-color: #e08e45;
+      transform: translateY(-2px);
+    }
+
+    /* セクションタイトル */
+    .section-tag {
+      background-color: #d4ede5;
+      color: #5aa688;
+      border-radius: 9999px;
+      padding: 0.3rem 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ナビリンク */
+    .nav-link {
+      color: #3d3d3d;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #5aa688; }
+
+    /* ステップ番号 */
+    .step-circle {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #5aa688, #89c8a8);
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* FAQ */
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item[open] summary .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform 0.3s; }
+
+    /* フォーム */
+    input, textarea, select {
+      border: 1.5px solid #d4ede5;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #5aa688;
+      box-shadow: 0 0 0 3px rgba(90,166,136,0.2);
+    }
+
+    /* イラスト風デコレーション */
+    .deco-circle {
+      border-radius: 9999px;
+      position: absolute;
+      opacity: 0.15;
+    }
+
+    /* ヘッダー固定 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      box-shadow: 0 2px 16px rgba(90,166,136,0.1);
+    }
+
+    /* モバイルメニュー */
+    #mobile-menu {
+      display: none;
+    }
+    #mobile-menu.open {
+      display: flex;
+    }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- ========== ヘッダー ========== -->
+  <header>
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <!-- ロゴ -->
+      <a href="#" class="flex items-center gap-2">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="18" fill="#d4ede5"/>
+          <path d="M10 22c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="#5aa688" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="18" cy="13" r="3" fill="#5aa688"/>
+        </svg>
+        <div>
+          <p class="text-xs text-gray-400 leading-none">障害福祉サービス</p>
+          <p class="font-bold text-base text-gray-800 leading-tight">相談支援事業所（仮）</p>
+        </div>
+      </a>
+
+      <!-- デスクトップナビ -->
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="#about" class="nav-link">事業所について</a>
+        <a href="#service" class="nav-link">サービス</a>
+        <a href="#flow" class="nav-link">ご利用の流れ</a>
+        <a href="#staff" class="nav-link">スタッフ</a>
+        <a href="#faq" class="nav-link">よくある質問</a>
+        <a href="#contact" class="btn-main text-sm" style="padding:0.5rem 1.4rem;">お問い合わせ</a>
+      </nav>
+
+      <!-- ハンバーガー -->
+      <button id="hamburger" class="md:hidden p-2 rounded-lg" aria-label="メニュー">
+        <svg width="24" height="24" fill="none" stroke="#5aa688" stroke-width="2.5" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- モバイルメニュー -->
+    <div id="mobile-menu" class="flex-col gap-0 border-t border-gray-100 bg-white">
+      <a href="#about" class="nav-link block px-6 py-3 border-b border-gray-50">事業所について</a>
+      <a href="#service" class="nav-link block px-6 py-3 border-b border-gray-50">サービス</a>
+      <a href="#flow" class="nav-link block px-6 py-3 border-b border-gray-50">ご利用の流れ</a>
+      <a href="#staff" class="nav-link block px-6 py-3 border-b border-gray-50">スタッフ</a>
+      <a href="#faq" class="nav-link block px-6 py-3 border-b border-gray-50">よくある質問</a>
+      <a href="#contact" class="nav-link block px-6 py-4 font-bold text-green-600">お問い合わせ</a>
+    </div>
+  </header>
+
+  <!-- ========== ヒーロー ========== -->
+  <section class="relative overflow-hidden" style="background: linear-gradient(135deg, #eaf7f2 0%, #fef9f5 100%);">
+    <!-- デコ丸 -->
+    <div class="deco-circle" style="width:320px;height:320px;background:#5aa688;top:-80px;right:-80px;"></div>
+    <div class="deco-circle" style="width:200px;height:200px;background:#f5a55f;bottom:40px;left:-60px;"></div>
+
+    <div class="max-w-5xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center gap-10 relative z-10">
+      <!-- テキスト -->
+      <div class="flex-1 text-center md:text-left">
+        <span class="section-tag">障害福祉 ｜ 相談支援</span>
+        <h1 class="text-3xl md:text-4xl font-bold mt-2 mb-4" style="color:#2c5f4a; line-height:1.6;">
+          あなたの「どうしよう」に、<br>
+          <span style="color:#5aa688;">一緒に向き合います。</span>
+        </h1>
+        <p class="text-gray-600 text-base mb-8 leading-loose">
+          障害のある方やご家族が、地域で安心して暮らせるように。<br>
+          一人ひとりのペースに合わせて、サポートします。
+        </p>
+        <div class="flex flex-col gap-3 justify-center md:justify-start" style="max-width:320px; margin-left:auto; margin-right:auto;">
+          <a href="#contact" class="btn-main text-base justify-center">
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            まずは相談する
+          </a>
+          <a href="tel:0312345678" class="btn-accent text-base justify-center">
+            <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.77a16 16 0 0 0 6.29 6.29l.95-.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            電話で相談する
+          </a>
+        </div>
+        <p class="text-xs text-gray-400 mt-4 text-center md:text-left">受付時間：月〜土 9:00〜18:00（日祝休）</p>
+      </div>
+
+      <!-- ヒーローイラスト -->
+      <div class="flex-1 flex justify-center">
+        <div class="relative">
+          <!-- メインイラスト -->
+          <svg width="320" height="280" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- 背景円 -->
+            <circle cx="160" cy="150" r="120" fill="#d4ede5" opacity="0.5"/>
+            <!-- 建物 -->
+            <rect x="60" y="130" width="200" height="110" rx="12" fill="#5aa688"/>
+            <rect x="70" y="140" width="80" height="100" rx="8" fill="#3a8a70"/>
+            <rect x="170" y="140" width="80" height="100" rx="8" fill="#3a8a70"/>
+            <!-- 屋根 -->
+            <polygon points="50,135 160,60 270,135" fill="#2c5f4a"/>
+            <!-- ドア -->
+            <rect x="130" y="190" width="60" height="50" rx="6" fill="#fde8d4"/>
+            <circle cx="182" cy="216" r="4" fill="#f5a55f"/>
+            <!-- 窓 -->
+            <rect x="82" y="165" width="30" height="28" rx="4" fill="#eaf7f2"/>
+            <rect x="122" y="165" width="30" height="28" rx="4" fill="#eaf7f2" opacity="0.5"/>
+            <rect x="182" y="165" width="30" height="28" rx="4" fill="#eaf7f2"/>
+            <rect x="222" y="165" width="30" height="28" rx="4" fill="#eaf7f2" opacity="0.5"/>
+            <!-- 看板 -->
+            <rect x="100" y="100" width="120" height="28" rx="8" fill="white" opacity="0.9"/>
+            <text x="160" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#5aa688" font-family="sans-serif">相談支援事業所</text>
+            <!-- 人物（左） -->
+            <circle cx="90" cy="108" r="14" fill="#f5a55f" opacity="0.8"/>
+            <path d="M76 128c0-7.7 6.3-14 14-14s14 6.3 14 14" stroke="#f5a55f" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+            <!-- 人物（右） -->
+            <circle cx="230" cy="108" r="14" fill="#5b8fb9" opacity="0.8"/>
+            <path d="M216 128c0-7.7 6.3-14 14-14s14 6.3 14 14" stroke="#5b8fb9" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+            <!-- 緑 -->
+            <circle cx="48" cy="240" r="18" fill="#89c8a8"/>
+            <rect x="46" y="238" width="4" height="16" fill="#5aa688"/>
+            <circle cx="272" cy="240" r="18" fill="#89c8a8"/>
+            <rect x="270" y="238" width="4" height="16" fill="#5aa688"/>
+            <!-- 雲 -->
+            <ellipse cx="60" cy="68" rx="30" ry="16" fill="white" opacity="0.7"/>
+            <ellipse cx="80" cy="60" rx="22" ry="14" fill="white" opacity="0.7"/>
+            <ellipse cx="260" cy="80" rx="24" ry="13" fill="white" opacity="0.7"/>
+            <ellipse cx="278" cy="70" rx="18" ry="12" fill="white" opacity="0.7"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- 波形 -->
+    <div style="height:60px;overflow:hidden;margin-top:-1px;">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width:100%;height:100%;">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="white"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ========== こんな方へ ========== -->
+  <section class="py-16 bg-white" id="about">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="section-tag">こんな方のお役に立てます</span>
+      <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-4">あなたの「困った」に、<br class="md:hidden">寄り添います</h2>
+      <p class="text-gray-500 mb-10 text-sm md:text-base">相談支援事業所は、障害のある方やご家族が地域で安心して生活できるよう<br>一緒にサービス計画を立てる場所です。</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- カード -->
+        <div class="card-soft bg-white border p-6 text-left" style="border-color:#d4ede5;">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:#d4ede5;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#5aa688" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3 class="font-bold text-base mb-2">はじめて障害サービスを<br>利用したい</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">「何から始めればいい？」そんな最初の一歩を丁寧にサポートします。</p>
+        </div>
+
+        <div class="card-soft bg-white border p-6 text-left" style="border-color:#d4ede5;">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:#fde8d4;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#f5a55f" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="font-bold text-base mb-2">どんな福祉サービスが<br>あるか知りたい</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">障害の種別・状態に合ったサービスを一緒に探します。</p>
+        </div>
+
+        <div class="card-soft bg-white border p-6 text-left" style="border-color:#d4ede5;">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:#daeaf5;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#5b8fb9" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3 class="font-bold text-base mb-2">施設から地域に<br>移りたい</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">「地域で暮らしたい」その想いを実現するための計画を一緒に作ります。</p>
+        </div>
+
+        <div class="card-soft bg-white border p-6 text-left" style="border-color:#d4ede5;">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:#d4ede5;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#5aa688" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <h3 class="font-bold text-base mb-2">サービスの更新・<br>変更をしたい</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">現在利用中のサービスの見直しや追加もお気軽にご相談ください。</p>
+        </div>
+
+        <div class="card-soft bg-white border p-6 text-left" style="border-color:#d4ede5;">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:#fde8d4;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#f5a55f" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="font-bold text-base mb-2">ご家族が悩みを<br>抱えている</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">介護する家族の不安や疲れも大切なご相談です。一緒に考えましょう。</p>
+        </div>
+
+        <div class="card-soft bg-white border p-6 text-left" style="border-color:#d4ede5;">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mb-4" style="background:#daeaf5;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="#5b8fb9" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-width="3" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="font-bold text-base mb-2">何を相談すればいいか<br>わからない</h3>
+          <p class="text-sm text-gray-500 leading-relaxed">「うまく説明できない」でも大丈夫。まずはお話を聞かせてください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 波形 -->
+  <div style="height:60px;overflow:hidden;background:white;">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width:100%;height:100%;">
+      <path d="M0,0 C360,60 1080,0 1440,60 L1440,60 L0,60 Z" fill="#f0f7f4"/>
+    </svg>
+  </div>
+
+  <!-- ========== サービス ========== -->
+  <section class="py-16" id="service" style="background:#f0f7f4;">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="section-tag">サービス内容</span>
+      <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-4">3つのサポートメニュー</h2>
+      <p class="text-gray-500 mb-10 text-sm md:text-base">利用者一人ひとりのニーズに合わせて、最適な支援をご提案します。</p>
+
+      <!-- サービス01 -->
+      <div class="flex flex-col md:flex-row items-center gap-8 mb-12 text-left">
+        <div class="flex-1">
+          <svg width="280" height="200" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
+            <rect width="280" height="200" rx="16" fill="#d4ede5"/>
+            <!-- デスク -->
+            <rect x="60" y="130" width="160" height="10" rx="4" fill="#5aa688"/>
+            <rect x="70" y="140" width="10" height="40" rx="3" fill="#5aa688"/>
+            <rect x="200" y="140" width="10" height="40" rx="3" fill="#5aa688"/>
+            <!-- 書類 -->
+            <rect x="80" y="100" width="120" height="34" rx="6" fill="white"/>
+            <line x1="92" y1="113" x2="188" y2="113" stroke="#5aa688" stroke-width="2"/>
+            <line x1="92" y1="122" x2="160" y2="122" stroke="#d4ede5" stroke-width="2"/>
+            <!-- ペン -->
+            <rect x="170" y="108" width="5" height="20" rx="2" transform="rotate(-30 170 108)" fill="#f5a55f"/>
+            <!-- 人 -->
+            <circle cx="100" cy="72" r="18" fill="#f5a55f" opacity="0.8"/>
+            <path d="M82 98c0-9.9 8.1-18 18-18s18 8.1 18 18" stroke="#f5a55f" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+            <circle cx="180" cy="72" r="18" fill="#5b8fb9" opacity="0.8"/>
+            <path d="M162 98c0-9.9 8.1-18 18-18s18 8.1 18 18" stroke="#5b8fb9" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+            <!-- 吹き出し -->
+            <rect x="110" y="30" width="60" height="28" rx="8" fill="white"/>
+            <polygon points="140,58 134,70 146,70" fill="white"/>
+            <circle cx="126" cy="44" r="4" fill="#5aa688"/>
+            <circle cx="140" cy="44" r="4" fill="#5aa688"/>
+            <circle cx="154" cy="44" r="4" fill="#5aa688"/>
+          </svg>
+        </div>
+        <div class="flex-1">
+          <div class="inline-flex items-center gap-2 mb-3">
+            <span class="text-white text-xs font-bold px-3 py-1 rounded-full" style="background:#5aa688;">サービス 01</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">計画相談支援</h3>
+          <p class="text-gray-600 leading-relaxed mb-4">障害福祉サービスや地域相談支援を利用するために必要な「サービス等利用計画」の作成をサポートします。ご本人・ご家族のご希望をしっかり伺いながら、最適なサービスを一緒に選びます。</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-gray-600">
+              <svg width="16" height="16" fill="#5aa688" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              サービス等利用計画の作成・更新
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-600">
+              <svg width="16" height="16" fill="#5aa688" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              モニタリング（定期的な見直し）
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-600">
+              <svg width="16" height="16" fill="#5aa688" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              関係機関との連絡・調整
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- サービス02 -->
+      <div class="flex flex-col md:flex-row-reverse items-center gap-8 mb-12 text-left">
+        <div class="flex-1">
+          <svg width="280" height="200" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
+            <rect width="280" height="200" rx="16" fill="#fde8d4"/>
+            <!-- 矢印（移行イメージ） -->
+            <rect x="40" y="80" width="80" height="80" rx="12" fill="#5b8fb9" opacity="0.5"/>
+            <text x="80" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">施設</text>
+            <rect x="160" y="80" width="80" height="80" rx="12" fill="#5aa688" opacity="0.7"/>
+            <text x="200" y="125" text-anchor="middle" font-size="11" font-weight="bold" fill="white" font-family="sans-serif">地域</text>
+            <path d="M130 120 L150 120" stroke="#f5a55f" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L8,3 z" fill="#f5a55f"/>
+              </marker>
+            </defs>
+            <!-- ハート -->
+            <path d="M140 58 C140 58 128 44 120 50 C112 56 116 70 140 80 C164 70 168 56 160 50 C152 44 140 58 140 58Z" fill="#f5a55f" opacity="0.6"/>
+            <!-- 人 -->
+            <circle cx="80" cy="55" r="16" fill="#5b8fb9" opacity="0.7"/>
+            <circle cx="200" cy="55" r="16" fill="#5aa688" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="flex-1">
+          <div class="inline-flex items-center gap-2 mb-3">
+            <span class="text-white text-xs font-bold px-3 py-1 rounded-full" style="background:#f5a55f;">サービス 02</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">地域移行支援</h3>
+          <p class="text-gray-600 leading-relaxed mb-4">入院・入所中の方が地域での生活に移行できるよう支援します。住居探しや生活リズムの準備など、地域で自分らしく生活できるようトータルにサポートします。</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-gray-600">
+              <svg width="16" height="16" fill="#f5a55f" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              地域生活への移行計画作成
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-600">
+              <svg width="16" height="16" fill="#f5a55f" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              住居・サービス探しのサポート
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-600">
+              <svg width="16" height="16" fill="#f5a55f" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              施設スタッフとの連携
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- サービス03 -->
+      <div class="flex flex-col md:flex-row items-center gap-8 text-left">
+        <div class="flex-1">
+          <svg width="280" height="200" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto">
+            <rect width="280" height="200" rx="16" fill="#daeaf5"/>
+            <!-- 家 -->
+            <polygon points="140,40 80,100 200,100" fill="#5b8fb9" opacity="0.7"/>
+            <rect x="90" y="100" width="100" height="80" rx="6" fill="#5b8fb9" opacity="0.5"/>
+            <rect x="118" y="140" width="44" height="40" rx="4" fill="#daeaf5"/>
+            <rect x="100" y="112" width="26" height="22" rx="3" fill="white" opacity="0.8"/>
+            <rect x="154" y="112" width="26" height="22" rx="3" fill="white" opacity="0.8"/>
+            <!-- サポート人物 -->
+            <circle cx="50" cy="110" r="16" fill="#f5a55f" opacity="0.8"/>
+            <path d="M34 132c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#f5a55f" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+            <circle cx="230" cy="110" r="16" fill="#5aa688" opacity="0.8"/>
+            <path d="M214 132c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#5aa688" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.8"/>
+            <!-- 矢印 -->
+            <path d="M72 122 Q80 122 88 122" stroke="#3d3d3d" stroke-width="2" stroke-dasharray="4 2" stroke-linecap="round" opacity="0.4"/>
+            <path d="M192 122 Q200 122 212 122" stroke="#3d3d3d" stroke-width="2" stroke-dasharray="4 2" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="flex-1">
+          <div class="inline-flex items-center gap-2 mb-3">
+            <span class="text-white text-xs font-bold px-3 py-1 rounded-full" style="background:#5b8fb9;">サービス 03</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3">地域定着支援</h3>
+          <p class="text-gray-600 leading-relaxed mb-4">地域で生活している方に対して、夜間・休日を含む緊急時の相談体制を確保します。「もしものとき」も安心して暮らせるよう、常時サポート体制を整えています。</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-gray-600">
+              <svg width="16" height="16" fill="#5b8fb9" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              24時間緊急相談対応
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-600">
+              <svg width="16" height="16" fill="#5b8fb9" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              定期的な訪問・電話相談
+            </li>
+            <li class="flex items-center gap-2 text-sm text-gray-600">
+              <svg width="16" height="16" fill="#5b8fb9" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+              緊急時の関係機関連絡・調整
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 波形 -->
+  <div style="height:60px;overflow:hidden;" style="background:#f0f7f4;">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width:100%;height:100%;">
+      <path d="M0,60 C360,0 1080,60 1440,0 L1440,60 L0,60 Z" fill="white"/>
+    </svg>
+  </div>
+
+  <!-- ========== ご利用の流れ ========== -->
+  <section class="py-16 bg-white" id="flow">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <span class="section-tag">ご利用の流れ</span>
+      <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-4">はじめての方も安心の<br>4ステップ</h2>
+      <p class="text-gray-500 mb-10 text-sm md:text-base">「どこに連絡すればいいかわからない」という方でも大丈夫。<br>まずはお気軽にお電話またはフォームからご連絡ください。</p>
+
+      <div class="space-y-6">
+        <!-- ステップ1 -->
+        <div class="flex items-start gap-4 text-left card-soft bg-white border p-6" style="border-color:#d4ede5;">
+          <div class="step-circle">1</div>
+          <div>
+            <h3 class="font-bold text-base mb-1">お問い合わせ・ご相談</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">電話・メール・フォームからお気軽にご連絡ください。「何を話せばいいかわからない」という方も歓迎です。まずはあなたの状況をお話ください。</p>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <svg width="24" height="32" viewBox="0 0 24 32" fill="none"><path d="M12 0 L12 24" stroke="#5aa688" stroke-width="2" stroke-dasharray="4 3"/><path d="M4 20 L12 30 L20 20" stroke="#5aa688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- ステップ2 -->
+        <div class="flex items-start gap-4 text-left card-soft bg-white border p-6" style="border-color:#d4ede5;">
+          <div class="step-circle">2</div>
+          <div>
+            <h3 class="font-bold text-base mb-1">面談・ヒアリング</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">担当の相談支援専門員が、ご本人・ご家族と面談します。お住まいの地域や通いやすい場所での面談も可能です。希望する生活・困っていること・将来の夢など、何でもお話しください。</p>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <svg width="24" height="32" viewBox="0 0 24 32" fill="none"><path d="M12 0 L12 24" stroke="#5aa688" stroke-width="2" stroke-dasharray="4 3"/><path d="M4 20 L12 30 L20 20" stroke="#5aa688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- ステップ3 -->
+        <div class="flex items-start gap-4 text-left card-soft bg-white border p-6" style="border-color:#d4ede5;">
+          <div class="step-circle">3</div>
+          <div>
+            <h3 class="font-bold text-base mb-1">サービス等利用計画案の作成</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">ヒアリングをもとに、あなたに合ったサービス等利用計画案を作成します。どのサービスを使うか、どのような生活を目指すかを一緒に考えます。</p>
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <svg width="24" height="32" viewBox="0 0 24 32" fill="none"><path d="M12 0 L12 24" stroke="#5aa688" stroke-width="2" stroke-dasharray="4 3"/><path d="M4 20 L12 30 L20 20" stroke="#5aa688" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <!-- ステップ4 -->
+        <div class="flex items-start gap-4 text-left card-soft bg-white border p-6" style="border-color:#d4ede5;">
+          <div class="step-circle">4</div>
+          <div>
+            <h3 class="font-bold text-base mb-1">サービス開始・継続サポート</h3>
+            <p class="text-sm text-gray-500 leading-relaxed">サービスが始まった後も、定期的なモニタリング（見直し）で継続的にサポートします。生活の変化に合わせて、いつでも相談できる環境を整えています。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10">
+        <a href="#contact" class="btn-main">
+          まずは無料でご相談ください
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 波形 -->
+  <div style="height:60px;overflow:hidden;background:white;">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width:100%;height:100%;">
+      <path d="M0,0 C360,60 1080,0 1440,60 L1440,60 L0,60 Z" fill="#f0f7f4"/>
+    </svg>
+  </div>
+
+  <!-- ========== スタッフ紹介 ========== -->
+  <section class="py-16" id="staff" style="background:#f0f7f4;">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <span class="section-tag">スタッフ紹介</span>
+      <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-4">あなたの担当スタッフ</h2>
+      <p class="text-gray-500 mb-10 text-sm md:text-base">経験豊富な相談支援専門員が、丁寧に対応します。</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- スタッフ1 -->
+        <div class="card-soft bg-white p-6 text-center">
+          <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden" style="background:#d4ede5;">
+            <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="48" cy="48" r="48" fill="#d4ede5"/>
+              <circle cx="48" cy="38" r="18" fill="#5aa688" opacity="0.7"/>
+              <path d="M14 88c0-18.8 15.2-34 34-34s34 15.2 34 34" fill="#5aa688" opacity="0.5"/>
+            </svg>
+          </div>
+          <p class="text-xs text-gray-400 mb-1">管理者・相談支援専門員</p>
+          <h3 class="font-bold text-base mb-2">田中 さくら</h3>
+          <p class="text-xs text-gray-500 leading-relaxed">福祉業界15年。知的障害・精神障害の支援を中心に、「一緒に考える」相談支援を大切にしています。</p>
+          <div class="mt-3 flex justify-center gap-1">
+            <span class="text-xs bg-green-50 text-green-600 px-2 py-1 rounded-full">知的障害</span>
+            <span class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded-full">精神障害</span>
+          </div>
+        </div>
+
+        <!-- スタッフ2 -->
+        <div class="card-soft bg-white p-6 text-center">
+          <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden" style="background:#fde8d4;">
+            <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="48" cy="48" r="48" fill="#fde8d4"/>
+              <circle cx="48" cy="38" r="18" fill="#f5a55f" opacity="0.7"/>
+              <path d="M14 88c0-18.8 15.2-34 34-34s34 15.2 34 34" fill="#f5a55f" opacity="0.5"/>
+            </svg>
+          </div>
+          <p class="text-xs text-gray-400 mb-1">相談支援専門員</p>
+          <h3 class="font-bold text-base mb-2">山田 こうじ</h3>
+          <p class="text-xs text-gray-500 leading-relaxed">身体障害・難病の支援経験豊富。医療機関との連携を得意とし、安心できる環境づくりをサポートします。</p>
+          <div class="mt-3 flex justify-center gap-1">
+            <span class="text-xs bg-orange-50 text-orange-600 px-2 py-1 rounded-full">身体障害</span>
+            <span class="text-xs bg-red-50 text-red-500 px-2 py-1 rounded-full">難病</span>
+          </div>
+        </div>
+
+        <!-- スタッフ3 -->
+        <div class="card-soft bg-white p-6 text-center">
+          <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden" style="background:#daeaf5;">
+            <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="48" cy="48" r="48" fill="#daeaf5"/>
+              <circle cx="48" cy="38" r="18" fill="#5b8fb9" opacity="0.7"/>
+              <path d="M14 88c0-18.8 15.2-34 34-34s34 15.2 34 34" fill="#5b8fb9" opacity="0.5"/>
+            </svg>
+          </div>
+          <p class="text-xs text-gray-400 mb-1">相談支援専門員</p>
+          <h3 class="font-bold text-base mb-2">佐藤 みほ</h3>
+          <p class="text-xs text-gray-500 leading-relaxed">子ども・青年期の支援を専門とし、発達障害の方や若年層の就労支援に力を入れています。</p>
+          <div class="mt-3 flex justify-center gap-1">
+            <span class="text-xs bg-purple-50 text-purple-600 px-2 py-1 rounded-full">発達障害</span>
+            <span class="text-xs bg-green-50 text-green-600 px-2 py-1 rounded-full">就労支援</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 資格・実績 -->
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="card-soft bg-white p-5 text-center">
+          <p class="text-3xl font-bold" style="color:#5aa688;">15<span class="text-base">年+</span></p>
+          <p class="text-xs text-gray-500 mt-1">支援実績</p>
+        </div>
+        <div class="card-soft bg-white p-5 text-center">
+          <p class="text-3xl font-bold" style="color:#f5a55f;">200<span class="text-base">名+</span></p>
+          <p class="text-xs text-gray-500 mt-1">支援人数</p>
+        </div>
+        <div class="card-soft bg-white p-5 text-center">
+          <p class="text-3xl font-bold" style="color:#5b8fb9;">3<span class="text-base">名</span></p>
+          <p class="text-xs text-gray-500 mt-1">専門員在籍</p>
+        </div>
+        <div class="card-soft bg-white p-5 text-center">
+          <p class="text-3xl font-bold" style="color:#5aa688;">4<span class="text-base">種</span></p>
+          <p class="text-xs text-gray-500 mt-1">対応障害種別</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 波形 -->
+  <div style="height:60px;overflow:hidden;" style="background:#f0f7f4;">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width:100%;height:100%;">
+      <path d="M0,60 C360,0 1080,60 1440,0 L1440,60 L0,60 Z" fill="white"/>
+    </svg>
+  </div>
+
+  <!-- ========== よくある質問 ========== -->
+  <section class="py-16 bg-white" id="faq">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <span class="section-tag">よくある質問</span>
+      <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-10">気になること、何でも聞いてください</h2>
+
+      <div class="space-y-4 text-left">
+        <!-- Q1 -->
+        <details class="faq-item card-soft border p-0 overflow-hidden" style="border-color:#d4ede5;">
+          <summary class="flex items-center justify-between p-5 font-bold text-sm md:text-base">
+            <span>費用はかかりますか？</span>
+            <span class="faq-icon text-2xl text-green-400 ml-3">+</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t" style="border-color:#d4ede5;">
+            相談支援サービスは原則として無料でご利用いただけます（一部、所得に応じた自己負担が発生する場合があります）。まずはお気軽にご相談ください。
+          </div>
+        </details>
+
+        <!-- Q2 -->
+        <details class="faq-item card-soft border p-0 overflow-hidden" style="border-color:#d4ede5;">
+          <summary class="flex items-center justify-between p-5 font-bold text-sm md:text-base">
+            <span>障害者手帳を持っていないと利用できませんか？</span>
+            <span class="faq-icon text-2xl text-green-400 ml-3">+</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t" style="border-color:#d4ede5;">
+            手帳がなくても、障害支援区分の認定を受けた方や、医師の診断書がある方はご利用いただける場合があります。詳しくはお問い合わせください。
+          </div>
+        </details>
+
+        <!-- Q3 -->
+        <details class="faq-item card-soft border p-0 overflow-hidden" style="border-color:#d4ede5;">
+          <summary class="flex items-center justify-between p-5 font-bold text-sm md:text-base">
+            <span>子どもでも利用できますか？</span>
+            <span class="faq-icon text-2xl text-green-400 ml-3">+</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t" style="border-color:#d4ede5;">
+            はい、お子さまからご高齢の方まで幅広くご対応しています。お子さまの場合は保護者の方と一緒にご相談いただくことが多いです。
+          </div>
+        </details>
+
+        <!-- Q4 -->
+        <details class="faq-item card-soft border p-0 overflow-hidden" style="border-color:#d4ede5;">
+          <summary class="flex items-center justify-between p-5 font-bold text-sm md:text-base">
+            <span>相談したら必ずサービスを使わないといけませんか？</span>
+            <span class="faq-icon text-2xl text-green-400 ml-3">+</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t" style="border-color:#d4ede5;">
+            いいえ、相談だけでも構いません。どんなサービスがあるか知りたい、情報収集したいという段階でもお気軽にどうぞ。
+          </div>
+        </details>
+
+        <!-- Q5 -->
+        <details class="faq-item card-soft border p-0 overflow-hidden" style="border-color:#d4ede5;">
+          <summary class="flex items-center justify-between p-5 font-bold text-sm md:text-base">
+            <span>担当者を変更できますか？</span>
+            <span class="faq-icon text-2xl text-green-400 ml-3">+</span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t" style="border-color:#d4ede5;">
+            はい、ご希望があればご遠慮なくおっしゃってください。相性も大切と考えており、担当者の変更にも対応しています。
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 波形 -->
+  <div style="height:60px;overflow:hidden;background:white;">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width:100%;height:100%;">
+      <path d="M0,0 C360,60 1080,0 1440,60 L1440,60 L0,60 Z" fill="#f0f7f4"/>
+    </svg>
+  </div>
+
+  <!-- ========== アクセス・店舗情報 ========== -->
+  <section class="py-16" id="access" style="background:#f0f7f4;">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <span class="section-tag">アクセス・店舗情報</span>
+        <h2 class="text-2xl md:text-3xl font-bold mt-2">事業所のご案内</h2>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-8">
+        <!-- 地図エリア -->
+        <div class="flex-1">
+          <div class="rounded-2xl overflow-hidden" style="height:280px;background:#d4ede5;position:relative;">
+            <!-- 地図プレースホルダー -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#5aa688" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <p class="text-green-700 font-bold mt-2">東京都新宿区西新宿2-1-1</p>
+              <p class="text-sm text-gray-500">（地図は実装時に埋め込み）</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 情報 -->
+        <div class="flex-1 card-soft bg-white p-6">
+          <h3 class="font-bold text-base mb-4 pb-3 border-b" style="border-color:#d4ede5;">相談支援事業所（仮）</h3>
+          <dl class="space-y-4 text-sm">
+            <div class="flex gap-3">
+              <dt class="flex-shrink-0 flex items-start gap-2 text-gray-400 w-24">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="mt-0.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>住所
+              </dt>
+              <dd class="text-gray-700">〒160-0023<br>東京都新宿区西新宿2-1-1<br>○○ビル3F</dd>
+            </div>
+            <div class="flex gap-3">
+              <dt class="flex-shrink-0 flex items-center gap-2 text-gray-400 w-24">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.77a16 16 0 0 0 6.29 6.29l.95-.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>電話
+              </dt>
+              <dd><a href="tel:0312345678" class="text-green-600 font-bold">03-1234-5678</a></dd>
+            </div>
+            <div class="flex gap-3">
+              <dt class="flex-shrink-0 flex items-center gap-2 text-gray-400 w-24">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>メール
+              </dt>
+              <dd><a href="mailto:info@example.com" class="text-green-600">info@example.com</a></dd>
+            </div>
+            <div class="flex gap-3">
+              <dt class="flex-shrink-0 flex items-center gap-2 text-gray-400 w-24">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>営業時間
+              </dt>
+              <dd class="text-gray-700">月〜土 9:00〜18:00<br><span class="text-xs text-gray-400">日曜・祝日休み</span></dd>
+            </div>
+            <div class="flex gap-3">
+              <dt class="flex-shrink-0 flex items-center gap-2 text-gray-400 w-24">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>アクセス
+              </dt>
+              <dd class="text-gray-700">新宿駅 西口より徒歩3分</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 波形 -->
+  <div style="height:60px;overflow:hidden;" style="background:#f0f7f4;">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="width:100%;height:100%;">
+      <path d="M0,60 C360,0 1080,60 1440,0 L1440,60 L0,60 Z" fill="white"/>
+    </svg>
+  </div>
+
+  <!-- ========== お問い合わせ ========== -->
+  <section class="py-16 bg-white" id="contact">
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <span class="section-tag">お問い合わせ</span>
+        <h2 class="text-2xl md:text-3xl font-bold mt-2 mb-3">まずは気軽にご相談を</h2>
+        <p class="text-gray-500 text-sm">お返事は通常2営業日以内にご連絡します。<br>お急ぎの方はお電話でどうぞ。</p>
+
+        <!-- 電話ボタン -->
+        <a href="tel:0312345678" class="btn-accent inline-flex mt-4">
+          <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.77a16 16 0 0 0 6.29 6.29l.95-.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          03-1234-5678（月〜土 9:00〜18:00）
+        </a>
+      </div>
+
+      <!-- フォーム -->
+      <div class="card-soft bg-white border p-8" style="border-color:#d4ede5;">
+        <form action="#" method="post" onsubmit="handleSubmit(event)">
+          <div class="space-y-5">
+            <!-- 名前 -->
+            <div>
+              <label class="block text-sm font-bold mb-1 text-gray-700">お名前 <span class="text-red-400">*</span></label>
+              <input type="text" name="name" placeholder="例：山田 太郎" required>
+            </div>
+
+            <!-- フリガナ -->
+            <div>
+              <label class="block text-sm font-bold mb-1 text-gray-700">フリガナ</label>
+              <input type="text" name="kana" placeholder="例：ヤマダ タロウ">
+            </div>
+
+            <!-- 電話番号 -->
+            <div>
+              <label class="block text-sm font-bold mb-1 text-gray-700">電話番号</label>
+              <input type="tel" name="tel" placeholder="例：090-1234-5678">
+            </div>
+
+            <!-- メール -->
+            <div>
+              <label class="block text-sm font-bold mb-1 text-gray-700">メールアドレス <span class="text-red-400">*</span></label>
+              <input type="email" name="email" placeholder="例：example@email.com" required>
+            </div>
+
+            <!-- 相談種別 -->
+            <div>
+              <label class="block text-sm font-bold mb-1 text-gray-700">ご相談の種別</label>
+              <select name="type">
+                <option value="">選択してください</option>
+                <option value="keikaku">計画相談支援について</option>
+                <option value="chiiki_iko">地域移行支援について</option>
+                <option value="chiiki_teichaku">地域定着支援について</option>
+                <option value="service">利用できるサービスについて</option>
+                <option value="other">その他</option>
+              </select>
+            </div>
+
+            <!-- 相談内容 -->
+            <div>
+              <label class="block text-sm font-bold mb-1 text-gray-700">相談内容・ご質問 <span class="text-red-400">*</span></label>
+              <textarea name="message" rows="5" placeholder="相談したいことを自由にお書きください。うまく説明できなくても大丈夫です。" required style="resize:vertical;"></textarea>
+            </div>
+
+            <!-- 個人情報 -->
+            <div class="flex items-start gap-3">
+              <input type="checkbox" id="privacy" name="privacy" required class="mt-1" style="width:auto;border-radius:4px;">
+              <label for="privacy" class="text-sm text-gray-500">
+                <a href="#" class="text-green-600 underline">プライバシーポリシー</a>に同意する
+              </label>
+            </div>
+
+            <!-- 送信ボタン -->
+            <button type="submit" class="btn-main w-full justify-center text-base py-4">
+              <svg width="18" height="18" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              送信する
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== フッター ========== -->
+  <footer style="background:#2c5f4a;" class="text-white pt-12 pb-6">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <!-- ロゴ・説明 -->
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="18" fill="rgba(255,255,255,0.15)"/><path d="M10 22c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="white" stroke-width="2.5" stroke-linecap="round"/><circle cx="18" cy="13" r="3" fill="white"/></svg>
+            <div>
+              <p class="text-xs text-green-300 leading-none">障害福祉サービス</p>
+              <p class="font-bold text-base leading-tight">相談支援事業所（仮）</p>
+            </div>
+          </div>
+          <p class="text-sm text-green-200 leading-relaxed">障害のある方やご家族が<br>地域で安心して暮らせるよう、<br>一緒に考えます。</p>
+        </div>
+
+        <!-- リンク -->
+        <div>
+          <h4 class="font-bold mb-3 text-green-300 text-sm">サイトマップ</h4>
+          <ul class="space-y-2 text-sm text-green-100">
+            <li><a href="#about" class="hover:text-white transition-colors">事業所について</a></li>
+            <li><a href="#service" class="hover:text-white transition-colors">サービス内容</a></li>
+            <li><a href="#flow" class="hover:text-white transition-colors">ご利用の流れ</a></li>
+            <li><a href="#staff" class="hover:text-white transition-colors">スタッフ紹介</a></li>
+            <li><a href="#faq" class="hover:text-white transition-colors">よくある質問</a></li>
+            <li><a href="#contact" class="hover:text-white transition-colors">お問い合わせ</a></li>
+          </ul>
+        </div>
+
+        <!-- 連絡先 -->
+        <div>
+          <h4 class="font-bold mb-3 text-green-300 text-sm">お問い合わせ</h4>
+          <p class="text-sm text-green-100 mb-1">〒160-0023<br>東京都新宿区西新宿2-1-1 ○○ビル3F</p>
+          <a href="tel:0312345678" class="text-white font-bold text-lg hover:text-green-300 transition-colors">03-1234-5678</a>
+          <p class="text-xs text-green-300 mt-1">月〜土 9:00〜18:00（日祝休）</p>
+          <div class="mt-4">
+            <a href="#contact" class="inline-block text-sm text-white border border-white rounded-full px-4 py-2 hover:bg-white hover:text-green-800 transition-colors">
+              メールでお問い合わせ
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-green-700 pt-4 text-center">
+        <p class="text-xs text-green-400">© 2025 相談支援事業所（仮）. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== 浮きボタン（スマホ用） ========== -->
+  <div class="fixed bottom-0 left-0 right-0 md:hidden z-50 p-3 flex gap-3" style="background:rgba(255,255,255,0.95);box-shadow:0 -2px 16px rgba(0,0,0,0.1);">
+    <a href="tel:0312345678" class="btn-accent flex-1 justify-center text-sm py-3">
+      <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.77a16 16 0 0 0 6.29 6.29l.95-.88a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      電話する
+    </a>
+    <a href="#contact" class="btn-main flex-1 justify-center text-sm py-3">
+      <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      相談する
+    </a>
+  </div>
+
+  <!-- モバイルの浮きボタン分の余白 -->
+  <div class="h-16 md:hidden"></div>
+
+  <script>
+    // ハンバーガーメニュー
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    // モバイルメニューのリンクをクリックしたら閉じる
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // フォーム送信（仮）
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('お問い合わせを受け付けました。\n2営業日以内にご連絡いたします。\nありがとうございました。');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
