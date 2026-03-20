@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="都心の最高峰。静寂と格式が交わる邸宅、ここに。">
+  <meta property="og:title" content="GRAND RESIDENCE TOKYO">
+  <meta property="og:description" content="都心の最高峰。静寂と格式が交わる邸宅、ここに。">
+  <meta property="og:type" content="website">
+  <title>GRAND RESIDENCE TOKYO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #0f0f0f;
+      --white: #f8f6f2;
+      --gold: #b8955a;
+      --gray: #5a5a5a;
+      --light-gray: #e8e5e0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Noto Serif JP', serif;
+      overflow-x: hidden;
+    }
+
+    /* ナビゲーション */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      mix-blend-mode: normal;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .nav-menu a:hover {
+      opacity: 1;
+    }
+
+    /* ヒーローセクション */
+    #hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+    }
+
+    /* 動画がない場合のプレースホルダー */
+    .hero-video-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-video-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.4;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.5) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 8vw, 110px);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      line-height: 1.1;
+      color: var(--white);
+      display: block;
+    }
+
+    .hero-jp {
+      font-size: clamp(13px, 1.5vw, 16px);
+      font-weight: 300;
+      letter-spacing: 0.4em;
+      color: var(--white);
+      opacity: 0.8;
+      display: block;
+      margin-top: 20px;
+    }
+
+    .hero-line {
+      width: 1px;
+      height: 60px;
+      background: var(--gold);
+      margin: 32px auto 0;
+    }
+
+    /* スクロール矢印 */
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-down span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--white);
+      opacity: 0.6;
+    }
+
+    .scroll-arrow {
+      width: 1px;
+      height: 60px;
+      background: var(--white);
+      opacity: 0.4;
+      animation: scrollLine 2s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); opacity: 0; }
+      50% { transform: scaleY(1); opacity: 0.4; }
+      100% { transform: scaleY(1); opacity: 0; }
+    }
+
+    /* セクション共通 */
+    section {
+      padding: 120px 48px;
+    }
+
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    .section-title-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      color: var(--white);
+    }
+
+    .section-title-jp {
+      font-size: clamp(14px, 1.8vw, 18px);
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      opacity: 0.7;
+      margin-top: 16px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 32px 0;
+    }
+
+    /* コンセプトセクション */
+    #concept {
+      background-color: var(--black);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 48px;
+    }
+
+    .concept-image {
+      position: relative;
+    }
+
+    .concept-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .concept-image::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: -20px;
+      bottom: -20px;
+      border: 1px solid var(--gold);
+      z-index: -1;
+    }
+
+    .concept-text p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 2.2;
+      color: var(--white);
+      opacity: 0.85;
+      margin-bottom: 24px;
+    }
+
+    /* 特徴セクション */
+    #features {
+      background-color: #111111;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 48px;
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(184, 149, 90, 0.2);
+    }
+
+    .feature-item {
+      background: #111111;
+      padding: 56px 40px;
+      position: relative;
+    }
+
+    .feature-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      font-weight: 300;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+
+    .feature-title {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .feature-text {
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--white);
+      opacity: 0.65;
+    }
+
+    /* ギャラリーセクション */
+    #gallery {
+      padding: 120px 48px;
+      background: var(--black);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-header {
+      margin-bottom: 60px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 4px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1.2s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-main {
+      grid-row: span 2;
+      height: 600px;
+    }
+
+    .gallery-sub {
+      height: 297px;
+    }
+
+    /* 仕様セクション */
+    #spec {
+      background: #0a0a0a;
+      padding: 120px 0;
+    }
+
+    .spec-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    .spec-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .spec-table tr {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .spec-table tr:first-child {
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .spec-table th {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-align: left;
+      padding: 24px 0;
+      width: 200px;
+    }
+
+    .spec-table td {
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      opacity: 0.85;
+      padding: 24px 0;
+    }
+
+    /* アクセスセクション */
+    #access {
+      padding: 120px 48px;
+      background: var(--black);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 60px;
+    }
+
+    .access-map {
+      background: #1a1a1a;
+      height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .access-map span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      opacity: 0.4;
+    }
+
+    .access-info dt {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 8px;
+      margin-top: 32px;
+    }
+
+    .access-info dt:first-child {
+      margin-top: 0;
+    }
+
+    .access-info dd {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--white);
+      opacity: 0.85;
+    }
+
+    /* CTAセクション */
+    #cta {
+      background: #0a0a0a;
+      padding: 160px 48px;
+      text-align: center;
+      border-top: 1px solid rgba(184, 149, 90, 0.3);
+    }
+
+    .cta-en {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .cta-jp {
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--white);
+      opacity: 0.6;
+      display: block;
+      margin-bottom: 60px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 20px 56px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s ease;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+      z-index: -1;
+    }
+
+    .btn-primary:hover {
+      color: var(--black);
+    }
+
+    .btn-primary:hover::before {
+      transform: translateX(0);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      padding: 20px 56px;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.3em;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s ease;
+    }
+
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--white);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+      z-index: -1;
+    }
+
+    .btn-secondary:hover {
+      color: var(--black);
+    }
+
+    .btn-secondary:hover::before {
+      transform: translateX(0);
+    }
+
+    /* フッター */
+    footer {
+      background: var(--black);
+      padding: 48px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    footer p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      opacity: 0.4;
+    }
+
+    /* フェードインアニメーション */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 768px) {
+      nav {
+        padding: 20px 24px;
+      }
+
+      .nav-menu {
+        display: none;
+      }
+
+      section {
+        padding: 80px 24px;
+      }
+
+      #concept {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding: 80px 24px;
+      }
+
+      .concept-image::after {
+        display: none;
+      }
+
+      .concept-image img {
+        height: 300px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #features {
+        padding: 80px 24px;
+      }
+
+      #gallery {
+        padding: 80px 24px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-main {
+        height: 300px;
+        grid-row: span 1;
+      }
+
+      .gallery-sub {
+        height: 200px;
+      }
+
+      #spec {
+        padding: 80px 0;
+      }
+
+      .spec-inner {
+        padding: 0 24px;
+      }
+
+      .spec-table th {
+        width: 120px;
+        font-size: 11px;
+      }
+
+      #access {
+        padding: 80px 24px;
+      }
+
+      .access-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      #cta {
+        padding: 100px 24px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+      }
+
+      footer {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ナビゲーション -->
+  <nav>
+    <a href="#" class="nav-logo">GRAND RESIDENCE</a>
+    <ul class="nav-menu">
+      <li><a href="#concept">CONCEPT</a></li>
+      <li><a href="#features">FEATURES</a></li>
+      <li><a href="#gallery">GALLERY</a></li>
+      <li><a href="#access">ACCESS</a></li>
+      <li><a href="#cta">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <!-- ヒーロー -->
+  <section id="hero">
+    <div class="hero-video-wrap">
+      <video autoplay muted loop playsinline>
+        <source src="hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-en">GRAND<br>RESIDENCE<br>TOKYO</span>
+      <div class="hero-line"></div>
+      <span class="hero-jp">都心の最高峰。静寂と格式が交わる邸宅、ここに。</span>
+    </div>
+    <div class="scroll-down">
+      <span>SCROLL</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- コンセプト -->
+  <div id="concept">
+    <div class="concept-image fade-in">
+      <img src="https://placehold.co/700x500/1e1e1e/444444?text=CONCEPT+IMAGE" alt="邸宅コンセプト">
+    </div>
+    <div class="concept-text fade-in">
+      <span class="section-label">CONCEPT</span>
+      <h2 class="section-title-en">A Residence<br>Beyond Luxury</h2>
+      <div class="divider"></div>
+      <p>
+        喧騒を忘れ、静けさの中に佇む。<br>
+        ここは、選ばれた人だけが辿り着く特別な住まい。
+      </p>
+      <p>
+        都心の利便性を享受しながらも、<br>
+        プライベートな時間と空間を大切に守る。<br>
+        そんな邸宅がここに生まれました。
+      </p>
+    </div>
+  </div>
+
+  <!-- 特徴 -->
+  <div id="features">
+    <div class="features-header fade-in">
+      <span class="section-label">FEATURES</span>
+      <h2 class="section-title-en">Three Values</h2>
+      <p class="section-title-jp">選ばれる理由</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-item fade-in">
+        <div class="feature-number">01</div>
+        <h3 class="feature-title">プライベート性</h3>
+        <p class="feature-text">
+          完全プライベートエントランスを設け、<br>
+          住まい手のプライバシーを<br>
+          徹底的に守ります。
+        </p>
+      </div>
+      <div class="feature-item fade-in">
+        <div class="feature-number">02</div>
+        <h3 class="feature-title">上質な素材</h3>
+        <p class="feature-text">
+          天然大理石、無垢フローリングなど、<br>
+          厳選された素材のみを使用。<br>
+          経年で深みを増す住まいです。
+        </p>
+      </div>
+      <div class="feature-item fade-in">
+        <div class="feature-number">03</div>
+        <h3 class="feature-title">都心アクセス</h3>
+        <p class="feature-text">
+          主要駅まで徒歩圏内でありながら、<br>
+          閑静な住宅街に位置する<br>
+          稀有なロケーション。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ギャラリー -->
+  <div id="gallery">
+    <div class="gallery-header fade-in">
+      <span class="section-label">GALLERY</span>
+      <h2 class="section-title-en">Interior</h2>
+      <p class="section-title-jp">邸宅ギャラリー</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-main">
+        <img src="https://placehold.co/800x600/1e1e1e/444444?text=LIVING+ROOM" alt="リビング">
+      </div>
+      <div class="gallery-item gallery-sub">
+        <img src="https://placehold.co/400x300/222222/555555?text=DINING" alt="ダイニング">
+      </div>
+      <div class="gallery-item gallery-sub">
+        <img src="https://placehold.co/400x300/1a1a1a/444444?text=BEDROOM" alt="ベッドルーム">
+      </div>
+    </div>
+  </div>
+
+  <!-- 仕様 -->
+  <section id="spec">
+    <div class="spec-inner">
+      <div class="spec-header fade-in">
+        <span class="section-label">SPECIFICATION</span>
+        <h2 class="section-title-en">Property Details</h2>
+        <p class="section-title-jp">物件概要</p>
+      </div>
+      <table class="spec-table fade-in">
+        <tr>
+          <th>PROPERTY NAME</th>
+          <td>グランドレジデンス東京</td>
+        </tr>
+        <tr>
+          <th>LOCATION</th>
+          <td>東京都港区南青山</td>
+        </tr>
+        <tr>
+          <th>STRUCTURE</th>
+          <td>鉄筋コンクリート造 地上5階建</td>
+        </tr>
+        <tr>
+          <th>FLOOR AREA</th>
+          <td>250.00m²〜320.00m²</td>
+        </tr>
+        <tr>
+          <th>UNITS</th>
+          <td>全6邸</td>
+        </tr>
+        <tr>
+          <th>PRICE</th>
+          <td>3億円台〜（要お問い合わせ）</td>
+        </tr>
+        <tr>
+          <th>COMPLETION</th>
+          <td>2026年6月竣工予定</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- アクセス -->
+  <div id="access">
+    <span class="section-label fade-in">ACCESS</span>
+    <h2 class="section-title-en fade-in">Location</h2>
+    <p class="section-title-jp fade-in">アクセス</p>
+    <div class="access-grid">
+      <div class="access-map fade-in">
+        <span>MAP AREA</span>
+      </div>
+      <dl class="access-info fade-in">
+        <dt>ADDRESS</dt>
+        <dd>東京都港区南青山X-X-X</dd>
+        <dt>TRAIN</dt>
+        <dd>
+          東京メトロ銀座線「表参道」駅<br>
+          徒歩5分
+        </dd>
+        <dt>PARKING</dt>
+        <dd>敷地内駐車場あり（全邸1台）</dd>
+        <dt>SECURITY</dt>
+        <dd>24時間有人管理・オートロック</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section id="cta">
+    <span class="cta-en fade-in">Contact Us</span>
+    <span class="cta-jp fade-in">お問い合わせ・資料請求</span>
+    <div class="btn-group fade-in">
+      <a href="tel:0300000000" class="btn-primary">TEL: 03-0000-0000</a>
+      <a href="#" class="btn-secondary">資料請求はこちら</a>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer>
+    <p>&copy; 2026 GRAND RESIDENCE TOKYO. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <script>
+    // スクロールでフェードイン
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
